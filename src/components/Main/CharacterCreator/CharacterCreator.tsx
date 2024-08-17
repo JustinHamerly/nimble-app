@@ -116,7 +116,6 @@ function CharacterCreator () {
         
         if (currentWillStat.modifier !== highestWillStat.modifier){
             const difference = currentWillStat.modifier - highestWillStat.modifier;
-            const increment = Math.abs(difference);
             if (difference < 1){
                 dispatch({
                     type: 'UPDATE_ROLL_INFO',
@@ -144,6 +143,18 @@ function CharacterCreator () {
                     }
                 })
             }
+        }else{
+            dispatch({
+                type: 'UPDATE_ROLL_INFO',
+                payload: {
+                    section: 'saves',
+                    key: 'will',
+                    rollInfo:{
+                        ...willRollInfo,
+                        modifier: highestWillStat.modifier
+                    }
+                }
+            })
         }
     }
 
