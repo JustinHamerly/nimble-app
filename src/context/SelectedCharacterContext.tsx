@@ -105,7 +105,7 @@ const initialState: StateType = {
         },
         will: {
             name: 'will',
-            stat: '',
+            stat: 'int',
             modifier: 0
         }
     },

@@ -201,7 +201,8 @@ function StatAdjuster () {
                     key: 'will',
                     rollInfo:{
                         ...willRollInfo,
-                        modifier: highestWillStat.modifier
+                        modifier: highestWillStat.modifier,
+                        stat: currentWillStat.statName
                     }
                 }
             })
