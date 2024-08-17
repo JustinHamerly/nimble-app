@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import './CharacterSheet.css'
 import Skills from "./Skills/Skills";
-import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
 import Stats from "./StatsAndSaves/Stats";
 import Saves from "./saves/Saves";
 
