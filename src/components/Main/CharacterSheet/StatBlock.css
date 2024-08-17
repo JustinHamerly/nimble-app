@@ -1,0 +1,24 @@
+.stat-block {
+    height: 85px;
+    width: 75px;
+    margin: 3px;
+}
+
+.stat-button-box {
+    height: 50px;
+    width: 50px;
+    border: 1px, solid, gray;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h6 {
+    margin: 0
+}
+
+.sub-name{
+    font-weight: lighter;
+}

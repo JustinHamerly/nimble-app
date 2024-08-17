@@ -1,0 +1,16 @@
+main {
+  text-align: center;
+  background-color: hwb(252 91% 7%);
+  font-size: 12pt;
+  color: rgb(82, 79, 79);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+section{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

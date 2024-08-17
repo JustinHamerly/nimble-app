@@ -1,0 +1,22 @@
+.rolled-dice-box {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+    width: 150px;
+}
+
+.dice-list {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.dice-outline {
+    padding: 5px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 2px;
+}

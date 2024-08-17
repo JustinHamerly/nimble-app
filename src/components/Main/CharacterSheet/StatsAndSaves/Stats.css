@@ -1,0 +1,17 @@
+.stats-section{
+    border: 1px, solid, black;
+    background-color: white;
+    width: 410px
+}
+
+h3 {
+    margin:0;
+    font-weight: lighter;
+}
+
+.stats-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
