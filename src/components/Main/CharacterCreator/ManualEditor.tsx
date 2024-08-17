@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Drawer } from "@mui/material";
 import StatAdjuster from "./StatAdjuster";
 
-function CharacterCreatorDrawer () {
+function ManualEditor () {
     const [open, setOpen] = useState(false);
 
     const toggleDrawer = (newOpen: boolean) => () => setOpen(newOpen);
@@ -17,4 +17,4 @@ function CharacterCreatorDrawer () {
     )
 }
 
-export default CharacterCreatorDrawer
+export default ManualEditor
