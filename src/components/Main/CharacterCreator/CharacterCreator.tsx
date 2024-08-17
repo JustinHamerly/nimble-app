@@ -54,10 +54,9 @@ function CharacterCreator () {
                 }
             })
         }else if (statType === 'int' || statType === 'cha' || statType === 'wis'){
-            checkAndUpdateWillSave(statType);
+            checkAndUpdateWillSave();
         }
         
-        // update appropriate skills
         const skillsToUpdate = returnAssociatedSkills(statType);
         skillsToUpdate.forEach(skill => {
             dispatch({
@@ -84,13 +83,70 @@ function CharacterCreator () {
         // update appropriate skills
     }
     
-    const checkAndUpdateWillSave = (statType: string) => {
-        // check which stat is currently being used for will and its current value [stat, value]
-        // check which will stat is highest in stats [stat, value]
-        // if current and new are different:
-        // 1. find difference of values
-        // 2. if current < highest increase will stat by difference and change stat name to highest type
-        // 3. if current > highest decrease will stat by abs(difference) and change stat name to highest type
+    const checkAndUpdateWillSave = () => {
+        const willRollInfo = state.saves.will;
+        const associatedStat = state.saves.will.stat;
+        
+        const willStats = {
+            int: {
+                statName: state.stats.int.stat,
+                modifier: state.stats.int.modifier
+            },
+            wis: {
+                statName: state.stats.wis.stat,
+                modifier: state.stats.wis.modifier
+            },
+            cha: {
+                statName: state.stats.cha.stat,
+                modifier: state.stats.cha.modifier
+            }
+        }
+
+        let currentWillStat;
+
+        if (associatedStat === 'int'){
+            currentWillStat = willStats.int
+        }else if(associatedStat === 'wis'){
+            currentWillStat = willStats.wis
+        }else{
+            currentWillStat = willStats.cha
+        }
+        
+        const highestWillStat = Object.values(willStats).reduce((max, current) =>
+            current.modifier > max.modifier ? current : max
+        );
+        
+        if (currentWillStat.modifier !== highestWillStat.modifier){
+            const difference = currentWillStat.modifier - highestWillStat.modifier;
+            const increment = Math.abs(difference);
+            if (difference < 1){
+                dispatch({
+                    type: 'UPDATE_ROLL_INFO',
+                    payload: {
+                        section: 'saves',
+                        key: 'will',
+                        rollInfo:{
+                            ...willRollInfo,
+                            modifier: willRollInfo.modifier + increment,
+                            stat: highestWillStat.statName
+                        }
+                    }
+                })
+            }else{
+                dispatch({
+                    type: 'UPDATE_ROLL_INFO',
+                    payload: {
+                        section: 'saves',
+                        key: 'will',
+                        rollInfo:{
+                            ...willRollInfo,
+                            modifier: willRollInfo.modifier - increment,
+                            stat: highestWillStat.statName
+                        }
+                    }
+                })
+            }
+        }
     }
 
     const returnAssociatedSkills = (statType: string): RollInfo[] => {
