@@ -5,7 +5,7 @@ import { RollInfo } from "../../tools/interfaces";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 
 
-function CharacterCreator () {
+function StatAdjuster () {
     const charContext = useContext(SelectedCharacterContext);
     if (!charContext) return null;
 
@@ -69,7 +69,7 @@ function CharacterCreator () {
                 }
             })
         })
-    }
+    };
     
     const handleStatDecrease =  (statType: 'string') => {
         // decrease given stat
@@ -79,7 +79,7 @@ function CharacterCreator () {
         // check if stat type is a WILL type and if so check and update Will
     
         // update appropriate skills
-    }
+    };
     
     const checkAndUpdateWillSave = () => {
         const willRollInfo = state.saves.will;
@@ -156,7 +156,7 @@ function CharacterCreator () {
                 }
             })
         }
-    }
+    };
 
     const returnAssociatedSkills = (statType: string): RollInfo[] => {
         if(statType === 'str'){
@@ -172,7 +172,7 @@ function CharacterCreator () {
         }
 
         return []
-    }
+    };
     
 
 
@@ -195,6 +195,6 @@ function CharacterCreator () {
             </div>
         </div>
     )
-}
+};
 
-export default CharacterCreator
+export default StatAdjuster;
