@@ -22,3 +22,8 @@ h6 {
 .sub-name{
     font-weight: lighter;
 }
+
+.value {
+    font-size: 25px;
+    font-weight: lighter;
+}

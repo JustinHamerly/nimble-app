@@ -3,6 +3,7 @@ import './Main.css'
 
 import CharacterSheet from "./CharacterSheet/CharacterSheet";
 import SelectedCharacterProvider from "../../context/SelectedCharacterContext";
+import CharacterCreatorDrawer from "./CharacterCreator/CharacterCreatorDrawer";
 // import DiceBox from "./DiceBox/DiceBox";
 // import DiceRollerContextProvider from "../../context/DiceRollerContext";
 // import DiceDisplay from "./DiceBox/DiceDisplay";
@@ -12,6 +13,7 @@ function Main() {
         <SelectedCharacterProvider>
             {/* <DiceRollerContextProvider> */}
                 <main>
+                    <CharacterCreatorDrawer />
                     <CharacterSheet />
                     {/* <DiceBox />
                     <DiceDisplay /> */}
