@@ -151,7 +151,7 @@ const initialState: StateType = {
             modifier: 0
         },
         slightofhand: {
-            name: 'slt-of-hnd',
+            name: 'slightofhand',
             stat: 'dex',
             modifier: 0
         },

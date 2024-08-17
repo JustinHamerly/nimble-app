@@ -210,6 +210,7 @@ function StatAdjuster () {
     };
 
     const returnAssociatedSkills = (statType: string): RollInfo[] => {
+        console.log(state.skills.slightofhand)
         if(statType === 'str'){
             return [state.skills.might]
         }else if (statType === 'dex'){

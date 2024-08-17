@@ -27,13 +27,13 @@ function StatBlock({ rollInfo }: StatBlockProps) {
                 /> */}
             </div>
             <h6>
-                {rollInfo.name}
+                {rollInfo.name.toUpperCase()}
                 {showAdvArrow ? statBlockUpArrow : null }
                 {showDisArrow ? statBlockDownArrow : null }
                 
             </h6>
             <h6 className="sub-name">
-                {rollInfo.stat}
+                {rollInfo.stat.toUpperCase()}
             </h6>
         </div>
     )
