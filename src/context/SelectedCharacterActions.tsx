@@ -62,7 +62,7 @@ const getCharActions = () => {
             advantages: prevInfo.disadvantages - amount
         }}
     }
-    
+
     return {
         addToModifier,
         subtractFromModifier,
