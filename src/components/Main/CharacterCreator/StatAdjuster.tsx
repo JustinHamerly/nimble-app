@@ -71,14 +71,64 @@ function StatAdjuster () {
         })
     };
     
-    const handleStatDecrease =  (statType: 'string') => {
-        // decrease given stat
+    const handleStatDecrease =  (statType: string) => {
+        const statArray: RollInfo[] = Object.values(state.stats);
+        const statBlockToUpdate: RollInfo|undefined = statArray.find(statRollInfo => statRollInfo.stat === statType)
+        if(!statBlockToUpdate) return;
+
+        statBlockToUpdate.modifier -= 1;
+        
+        dispatch({
+            type: 'UPDATE_ROLL_INFO',
+            payload: {
+               section: 'stats',
+               key: statType,
+               rollInfo: statBlockToUpdate
+            }
+        })
+
+        if (statType === 'str'){
+            dispatch({
+                type: 'UPDATE_ROLL_INFO',
+                payload: {
+                    section: 'saves',
+                    key: 'str',
+                    rollInfo: {
+                        ...state.saves.str,
+                        modifier: state.saves.str.modifier - 1
+                    }
+                }
+            })
+        }else if (statType === 'dex'){
+            dispatch({
+                type: 'UPDATE_ROLL_INFO',
+                payload: {
+                    section: 'saves',
+                    key: 'dex',
+                    rollInfo: {
+                        ...state.saves.dex,
+                        modifier: state.saves.dex.modifier - 1
+                    }
+                }
+            })
+        }else if (statType === 'int' || statType === 'cha' || statType === 'wis'){
+            checkAndUpdateWillSave();
+        }
     
-        // conditionally decrease str and dex
-    
-        // check if stat type is a WILL type and if so check and update Will
-    
-        // update appropriate skills
+        const skillsToUpdate = returnAssociatedSkills(statType);
+        skillsToUpdate.forEach(skill => {
+            dispatch({
+                type: 'UPDATE_ROLL_INFO',
+                payload: {
+                    section: 'skills',
+                    key: skill.name,
+                    rollInfo:{
+                        ...skill,
+                        modifier: skill.modifier - 1
+                    }
+                }
+            })
+        })
     };
     
     const checkAndUpdateWillSave = () => {
@@ -138,7 +188,7 @@ function StatAdjuster () {
                         rollInfo:{
                             ...willRollInfo,
                             modifier: highestWillStat.modifier,
-                            stat: highestWillStat.statName
+                            stat: currentWillStat.statName
                         }
                     }
                 })
@@ -179,19 +229,19 @@ function StatAdjuster () {
     return (
         <div id='stat-adjuster-panel'>
             <div className="stat-adjuster" id="str-adjuster">
-                <UpOutlined onClick={() => handleStatIncrease('str')}/> STRENGTH
+                <UpOutlined onClick={() => handleStatIncrease('str')}/> STRENGTH <DownOutlined onClick={() => handleStatDecrease('str')}/>
             </div>
             <div className="stat-adjuster" id="dex-adjuster">
-                <UpOutlined onClick={() => handleStatIncrease('dex')}/> DEXTERITY
+                <UpOutlined onClick={() => handleStatIncrease('dex')}/> DEXTERITY <DownOutlined onClick={() => handleStatDecrease('dex')}/>
             </div>
             <div className="stat-adjuster" id="int-adjuster">
-                <UpOutlined onClick={() => handleStatIncrease('int')}/> ITELLIGENCE
+                <UpOutlined onClick={() => handleStatIncrease('int')}/> ITELLIGENCE <DownOutlined onClick={() => handleStatDecrease('int')}/>
             </div>
             <div className="stat-adjuster" id="wis-adjuster">
-                <UpOutlined onClick={() => handleStatIncrease('wis')}/> WISDOM
+                <UpOutlined onClick={() => handleStatIncrease('wis')}/> WISDOM <DownOutlined onClick={() => handleStatDecrease('wis')}/>
             </div>
             <div className="stat-adjuster" id="cha-adjuster">
-                <UpOutlined onClick={() => handleStatIncrease('cha')}/> CHARISMA
+                <UpOutlined onClick={() => handleStatIncrease('cha')}/> CHARISMA <DownOutlined onClick={() => handleStatDecrease('cha')}/>
             </div>
         </div>
     )
