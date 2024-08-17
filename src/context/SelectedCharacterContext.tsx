@@ -67,96 +67,96 @@ const initialState: StateType = {
     },
     stats:{
         str: {
-            name: 'STRENGTH',
+            name: 'strength',
             stat: 'str',
             modifier: 0
         },
         dex: {
-            name: 'DEXTERITY',
+            name: 'dexterity',
             stat: 'dex',
             modifier: 0
         },
         int: {
-            name: 'INTELLIGENCE',
+            name: 'intelligence',
             stat: 'int',
             modifier: 0
         },
         wis: {
-            name: 'WISDOM',
+            name: 'wisdom',
             stat: 'wis',
             modifier: 0
         },
         cha: {
-            name: 'CHARISMA',
+            name: 'charisma',
             stat: 'cha',
             modifier: 0
         }
     },
     saves:{
         str: {
-            name: 'STRENTH',
+            name: 'strength',
             stat: 'str',
             modifier: 0
         },
         dex: {
-            name: 'DEXTERITY',
+            name: 'dexterity',
             stat: 'dex',
             modifier: 0
         },
         will: {
-            name: 'WILL',
+            name: 'will',
             stat: '',
             modifier: 0
         }
     },
     skills: {
         arcana: {
-            name: 'ARCANA',
+            name: 'arcana',
             stat: 'int',
             modifier: 0
         },
         examination: {
-            name: 'EXAMINATION',
+            name: 'examination',
             stat: 'int',
             modifier: 0
         },
         influence: {
-            name: 'INFLUENCE',
+            name: 'influence',
             stat: 'cha',
             modifier: 0
         },
         insight: {
-            name: 'INSIGHT',
+            name: 'insight',
             stat: 'cha',
             modifier: 0
         },
         lore: {
-            name: 'LORE',
+            name: 'lore',
             stat: 'int',
             modifier: 0
         },
         might: {
-            name: 'MIGHT',
+            name: 'might',
             stat: 'str',
             modifier: 0
         },
         naturecraft: {
-            name: 'NATURECRAFT',
+            name: 'naturecraft',
             stat: 'wis',
             modifier: 0
         },
         perception: {
-            name: 'PERCEPTION',
+            name: 'perception',
             stat: 'wis',
             modifier: 0
         },
         slightofhand: {
-            name: 'SLT-OF-HND',
+            name: 'slt-of-hnd',
             stat: 'dex',
             modifier: 0
         },
         stealth: {
-            name: 'STEALTH',
+            name: 'stealth',
             stat: 'dex',
             modifier: 0
         }
