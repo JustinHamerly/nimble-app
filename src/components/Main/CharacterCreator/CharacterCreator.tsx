@@ -1,12 +1,11 @@
 import React, {useContext} from "react";
 
-import { getCharActions } from "../../../context/SelectedCharacterActions"
 import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
 import { RollInfo } from "../../tools/interfaces";
+import { UpOutlined, DownOutlined } from "@ant-design/icons";
 
 
 function CharacterCreator () {
-    const charActions = getCharActions();
     const charContext = useContext(SelectedCharacterContext);
     if (!charContext) return null;
 
@@ -28,7 +27,6 @@ function CharacterCreator () {
             }
         })
     
-        // conditionally increase str and dex saves
         if (statType === 'str'){
             dispatch({
                 type: 'UPDATE_ROLL_INFO',
@@ -168,8 +166,23 @@ function CharacterCreator () {
 
 
     return (
-        <>
-        </>
+        <div id='stat-adjuster-panel'>
+            <div className="stat-adjuster" id="str-adjuster">
+                <UpOutlined onClick={() => handleStatIncrease('str')}/> STRENGTH
+            </div>
+            <div className="stat-adjuster" id="dex-adjuster">
+                <UpOutlined onClick={() => handleStatIncrease('dex')}/> DEXTERITY
+            </div>
+            <div className="stat-adjuster" id="int-adjuster">
+                <UpOutlined onClick={() => handleStatIncrease('int')}/> ITELLIGENCE
+            </div>
+            <div className="stat-adjuster" id="wis-adjuster">
+                <UpOutlined onClick={() => handleStatIncrease('wis')}/> WISDOM
+            </div>
+            <div className="stat-adjuster" id="cha-adjuster">
+                <UpOutlined onClick={() => handleStatIncrease('cha')}/> CHARISMA
+            </div>
+        </div>
     )
 }
 
