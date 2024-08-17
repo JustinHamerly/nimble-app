@@ -125,7 +125,7 @@ function CharacterCreator () {
                         key: 'will',
                         rollInfo:{
                             ...willRollInfo,
-                            modifier: willRollInfo.modifier + increment,
+                            modifier: highestWillStat.modifier,
                             stat: highestWillStat.statName
                         }
                     }
@@ -138,7 +138,7 @@ function CharacterCreator () {
                         key: 'will',
                         rollInfo:{
                             ...willRollInfo,
-                            modifier: willRollInfo.modifier - increment,
+                            modifier: highestWillStat.modifier,
                             stat: highestWillStat.statName
                         }
                     }

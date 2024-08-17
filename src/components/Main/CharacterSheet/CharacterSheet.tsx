@@ -4,6 +4,7 @@ import Skills from "./Skills/Skills";
 import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
 import Stats from "./StatsAndSaves/Stats";
 import Saves from "./saves/Saves";
+import CharacterCreator from "../CharacterCreator/CharacterCreator";
 
 function CharacterSheet () {
     const context = useContext(SelectedCharacterContext);
@@ -30,6 +31,7 @@ function CharacterSheet () {
         <div className="char-sheet">
             <h1>Character Sheet</h1>
             <h3 onClick={seedStats}>SEED STATS</h3>
+            <CharacterCreator />
             <Stats />
             <Saves />
             <Skills />
