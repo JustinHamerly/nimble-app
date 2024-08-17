@@ -48,7 +48,7 @@ const initialState: StateType = {
     flavorBio: {
         name: '',
         race: '',
-        classes: [''],
+        classes: [],
         weight: '',
         height: '',
     },

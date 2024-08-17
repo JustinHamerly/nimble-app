@@ -11,10 +11,15 @@ export interface RollInfo {
 export interface FlavorBio {
     name: string;
     race: string;
-    classes: string[];
+    classes: ClassInfo[];
     weight: string;
     height: string;
 };
+
+export interface ClassInfo {
+    name: string;
+    level: number;
+}
 
 export interface MechanicalStats {
     maxHP: number;
