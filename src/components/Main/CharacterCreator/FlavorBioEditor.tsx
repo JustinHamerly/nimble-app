@@ -1,14 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import './FlavorBioEditor.css'
 import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
-import { Box, FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
 
 function FlavorBioEditor() {
-    
+
     const charContext = useContext(SelectedCharacterContext);
-    const [race, setRace] = useState('');
-    const [charClass, setCharClass] = useState('');
+    const [race, setRace] = useState(charContext?.state.flavorBio.race || '');
+    const [charClass, setCharClass] = useState(charContext?.state.flavorBio.classes[0].name || '');
+    const [charName, setCharName] = useState(charContext?.state.flavorBio.name || '');
+    const [weight, setWeight] = useState(charContext?.state.flavorBio.weight || '');
+    const [height, setHeight] = useState(charContext?.state.flavorBio.height || '');
+
     if (!charContext) return null;
+
+    const { dispatch } = charContext;
 
     return (
         <Box
@@ -18,7 +24,7 @@ function FlavorBioEditor() {
             id="flavor-bio-editor"
         >
             <FormControl className="bio-form-field">
-                <TextField id="outlined-basic" variant="standard" />
+                <TextField id="name-field" variant="standard" value={charName} onChange={(e) => setCharName(e.target.value)} />
                 <FormHelperText>Name</FormHelperText>
             </FormControl>
             <FormControl className="bio-form-field">
@@ -26,7 +32,7 @@ function FlavorBioEditor() {
                     id="race-select"
                     value={race}
                     variant="standard"
-                    onChange={(e: SelectChangeEvent)=>setRace(e.target.value)}
+                    onChange={(e: SelectChangeEvent) => setRace(e.target.value)}
                 >
                     <MenuItem className="menu-item" value={'human'}>Human</MenuItem>
                     <MenuItem className="menu-item" value={'elf'}>Elf</MenuItem>
@@ -40,7 +46,7 @@ function FlavorBioEditor() {
                     id="class-select"
                     value={charClass}
                     variant="standard"
-                    onChange={(e: SelectChangeEvent)=>setCharClass(e.target.value)}
+                    onChange={(e: SelectChangeEvent) => setCharClass(e.target.value)}
                 >
                     <MenuItem className="menu-item" value={'berserker'}>Berserker</MenuItem>
                     <MenuItem className="menu-item" value={'thecheat'}>The Cheat</MenuItem>
@@ -50,13 +56,24 @@ function FlavorBioEditor() {
                 <FormHelperText>Class</FormHelperText>
             </FormControl>
             <FormControl className="bio-form-field">
-                <TextField id="outlined-basic" variant="standard" />
+                <TextField id="weight-field" variant="standard" value={weight} onChange={(e) => setWeight(e.target.value)} />
                 <FormHelperText>Weight</FormHelperText>
             </FormControl>
             <FormControl className="bio-form-field">
-                <TextField id="outlined-basic" variant="standard" />
+                <TextField id="height-field" variant="standard" value={height} onChange={(e) => setHeight(e.target.value)} />
                 <FormHelperText>Height</FormHelperText>
             </FormControl>
+
+            <Button id="change-flavor-button" onClick={() => dispatch({
+                type: 'SET_FLAVOR_BIO',
+                payload: {
+                    name: charName,
+                    race: race,
+                    classes: [{name: charClass, level: 1}],
+                    weight: weight,
+                    height: height
+                }
+            })}>SAVE</Button>
         </Box>
     )
 };
