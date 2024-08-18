@@ -16,6 +16,22 @@ function FlavorBioEditor() {
 
     const { dispatch } = charContext;
 
+    const handleFlavorChange = () => {
+        dispatch({
+            type: 'SET_FLAVOR_BIO',
+            payload: {
+                name: charName,
+                race: race,
+                classes: [{name: charClass, level: 1}],
+                weight: weight,
+                height: height
+            }
+        })
+
+        //get race info and traits and add the traits to the traits section
+        //get class info.  update class saves/traits/abilities
+    }
+
     return (
         <Box
             component='form'
@@ -64,16 +80,7 @@ function FlavorBioEditor() {
                 <FormHelperText>Height</FormHelperText>
             </FormControl>
 
-            <Button id="change-flavor-button" onClick={() => dispatch({
-                type: 'SET_FLAVOR_BIO',
-                payload: {
-                    name: charName,
-                    race: race,
-                    classes: [{name: charClass, level: 1}],
-                    weight: weight,
-                    height: height
-                }
-            })}>SAVE</Button>
+            <Button id="change-flavor-button" onClick={handleFlavorChange}>SAVE</Button>
         </Box>
     )
 };

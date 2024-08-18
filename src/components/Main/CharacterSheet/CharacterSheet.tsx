@@ -3,11 +3,12 @@ import './CharacterSheet.css'
 import Skills from "./Skills/Skills";
 import Stats from "./StatsAndSaves/Stats";
 import Saves from "./saves/Saves";
+import BioInfo from "./CharacterInfo/BioInfo";
 
 function CharacterSheet () {
     return (
         <div className="char-sheet">
-            <h1>Character Sheet</h1>
+            <BioInfo />
             <Stats />
             <Saves />
             <Skills />
