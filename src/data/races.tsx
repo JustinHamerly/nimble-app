@@ -3,14 +3,14 @@ interface RaceAbility {
     description: string;
 }
 
-interface Race {
+export interface RaceInterface {
     name: string;
     size: string;
     description: string;
     ability: RaceAbility;
 }
 
-type RaceInfoType = Record<string, Race>
+type RaceInfoType = Record<string, RaceInterface>
 
 export const raceInfo: RaceInfoType = {
 
@@ -64,4 +64,3 @@ compared to them. Imagine the amount of luck you could fit into these bad boys!`
         }
     }
 }
-
