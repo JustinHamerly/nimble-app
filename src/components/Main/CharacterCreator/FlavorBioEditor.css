@@ -1,0 +1,8 @@
+#flavor-bio-editor {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border: 1px solid black;
+    background-color: white;
+    padding: 5px;
+}
