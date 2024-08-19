@@ -1,5 +1,6 @@
 import { ARMOR, WEAPONTYPE, RESOURCEPOOL } from "./enums";
-import { berserkerAbilities, ClassAbility } from "./abilities";
+import { ClassAbility } from "./abilities";
+import { berserkerAbilities } from "./classes/berserker";
 
 interface ClassInterface {
     playerClassName: string;
