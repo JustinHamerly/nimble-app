@@ -1,10 +1,5 @@
 import { ARMOR, WEAPONTYPE, RESOURCEPOOL } from "./enums";
-
-interface classAbility {
-    level: number;
-    name: string;
-    text: string;
-}
+import { berserkerAbilities, ClassAbility } from "./abilities";
 
 interface ClassInterface {
     playerClassName: string;
@@ -17,7 +12,7 @@ interface ClassInterface {
         startingHP: number;
     };
     keyStats: string[];
-    abilities: Record<string, classAbility>;
+    abilities: ClassAbility[];
     additionalResourcePool: RESOURCEPOOL;
     spellcaster: boolean;
     spellSchool: string[];
@@ -37,9 +32,12 @@ export const classInfo: ClassInfoType = {
             startingHP: 20
         },
         keyStats: ['str', 'dex'],
-        abilities: {},
+        abilities: berserkerAbilities,
         additionalResourcePool: RESOURCEPOOL.FURY,
         spellcaster: false,
         spellSchool: []
-    }
+    },
+
 }
+
+
