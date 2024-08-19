@@ -6,8 +6,14 @@ const berserkerSubclassAbilities: Record<string, ClassAbility> = {
         name: 'Thick Hide',
         text: `When you enter your rage, gain Temp HP equal to your 
 STR+DEX+your Berserker Level instead. `,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -18,8 +24,14 @@ STR+DEX+your Berserker Level instead. `,
         name: 'Hibernate',
         text: `If you sleep for 24 consecutive hours, you to recover all levels of 
 exhaustion (it must still be a safe place the GM designates).`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -31,8 +43,14 @@ exhaustion (it must still be a safe place the GM designates).`,
         text: `While raging, the first time on your turn you cause an 
 enemy to drop to 0 HP you may make an additional attack for free (with 1 
 more stack of disadvantage).`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -42,8 +60,14 @@ more stack of disadvantage).`,
         level: 3,
         name: 'Keen Nose',
         text: `Advantage on perception checks to notice or track down scents.`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -72,8 +96,14 @@ const savageArsenalAbility: Record<string, ClassAbility> = {
         name: 'Into The Fray',
         text: `Action: Leap up to your speed toward an enemy. If you land adjacent 
 to at least 2 enemies, make an attack against one of them for free.`,
-        action: true,
-        reaction: false,
+        action: {
+            isAction: true,
+            actionCount: 1
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -84,8 +114,14 @@ to at least 2 enemies, make an attack against one of them for free.`,
         name: 'Death Blow',
         text: `When your rage ends on a crit, apply your Fury Dice damage to the 
 attack again.`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -96,8 +132,14 @@ attack again.`,
         name: 'Mighty Endurance',
         text: `You can now survive an additional 4 levels of exhaustion before 
 death.`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -107,8 +149,14 @@ death.`,
         level: 4,
         name: 'MORE BLOOD!',
         text: `When you score a critical hit you may continue to rage.2/Long Rest.`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -120,8 +168,14 @@ death.`,
         text: `Action: While raging, you can make a skill check to demoralize an enemy 
 within 60 ft. Rolling higher than their remaining HP will cause it to immediately flee 
 the battle.`,
-        action: true,
-        reaction: false,
+        action: {
+            isAction: true,
+            actionCount: 1
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -131,8 +185,14 @@ the battle.`,
         level: 4,
         name: `Whirlwind`,
         text: `2 Actions: Damage ALL targets within your melee weapon's reach.`,
-        action: true,
-        reaction: false,
+        action: {
+            isAction: true,
+            actionCount: 2
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -188,8 +248,14 @@ const berserkerAbilities: ClassAbility[] = [
 much Temp HP. These effects end when your rage ends. Your rage is satiated 
 and ends if you score a critical hit; when you drop to 0 HP; or if you go 1 round 
 without dealing damage or entering your rage.`,
-        action: true,
-        reaction: false,
+        action: {
+            isAction: true,
+            actionCount: 1
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -203,8 +269,14 @@ without dealing damage or entering your rage.`,
 much Temp HP. These effects end when your rage ends. Your rage is satiated 
 and ends if you score a critical hit; when you drop to 0 HP; or if you go 1 round 
 without dealing damage or entering your rage.`,
-        action: true,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: true,
@@ -215,8 +287,14 @@ without dealing damage or entering your rage.`,
                 text: `Your Fury Die is now a d8. Roll your Fury Die when 
         you enter your rage for the first time during combat as well as at the end of 
         your subsequent turns. `,
-                action: false,
-                reaction: false,
+                action: {
+                    isAction: false,
+                    actionCount: 0
+                },
+                reaction: {
+                    isReaction: false,
+                    actionCount: 0
+                },
                 hasOptions: false,
                 options: [],
                 hasUpgrades: false,
@@ -229,8 +307,14 @@ without dealing damage or entering your rage.`,
         level: 3,
         name: 'Subclass',
         text: `Choose an animalistic Berserker subclass.`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: true,
         options: [berserkerSubclasses.bearSpirit, berserkerSubclasses.wolfSpirit],
         hasUpgrades: false,
@@ -243,8 +327,14 @@ without dealing damage or entering your rage.`,
         text: `While Dying you enter your Rage automatically at the 
 beginning of your turn, you also have a maximum of 2 Actions instead of 1, 
 and ignore the STR save requirement to make attacks.`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: [],
         hasUpgrades: false,
@@ -257,8 +347,14 @@ and ignore the STR save requirement to make attacks.`,
         text: `Learn 1 ability from the Savage Arsenal. If you perform 
 a notable act of destruction or feat of strength during a Long Rest you may 
 exchange 1 Savage Arsenal ability you know for a different one.`,
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: false,
         options: savageArsenalAbilityOptions,
         hasUpgrades: false,
@@ -269,8 +365,14 @@ exchange 1 Savage Arsenal ability you know for a different one.`,
         level: 4,
         name: 'Key Stat Increase',
         text: '+1 STR or DEX.',
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: true,
         options: [statIncreaseOptions.strength, statIncreaseOptions.dexterity],
         hasUpgrades: false,
@@ -281,8 +383,14 @@ exchange 1 Savage Arsenal ability you know for a different one.`,
         level: 5,
         name: 'Secondary Stat Increase',
         text: '+1 INT, WIS or CHA.',
-        action: false,
-        reaction: false,
+        action: {
+            isAction: false,
+            actionCount: 0
+        },
+        reaction: {
+            isReaction: false,
+            actionCount: 0
+        },
         hasOptions: true,
         options: [statIncreaseOptions.intelligence, statIncreaseOptions.wisdom, statIncreaseOptions.charisma],
         hasUpgrades: false,

@@ -9,8 +9,14 @@ export interface ClassAbility {
     level: number;
     name: string;
     text: string;
-    action: boolean;
-    reaction: boolean;
+    action: {
+        isAction: boolean;
+        actionCount: number;
+    };
+    reaction: {
+        isReaction: boolean;
+        actionCount: number;
+    };
     hasOptions: boolean;
     options: Option[];
     hasUpgrades: boolean,
