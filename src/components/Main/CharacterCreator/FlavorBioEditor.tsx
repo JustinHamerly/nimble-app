@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import './FlavorBioEditor.css'
 import { raceInfo, RaceInterface } from "../../../data/races";
 import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
