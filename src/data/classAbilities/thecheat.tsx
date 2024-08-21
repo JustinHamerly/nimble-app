@@ -126,7 +126,7 @@ const underhandedAbilityOptions: Option[] = [
     }
 ];
 
-const theCheatAbilities: ClassAbility[] = [
+export const theCheatAbilities: ClassAbility[] = [
     createAbility(
         1,
         'Vicious Opportunist',

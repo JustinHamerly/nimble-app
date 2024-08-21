@@ -1,6 +1,7 @@
 import { ARMOR, WEAPONTYPE, RESOURCEPOOL } from "./enums";
 import { ClassAbility } from "./abilities";
 import { berserkerAbilities } from "./classAbilities/berserker";
+import { theCheatAbilities } from "./classAbilities/thecheat";
 
 interface ClassInterface {
     playerClassName: string;
@@ -50,9 +51,25 @@ export const classInfo: ClassInfoType = {
             startingHP: 10
         },
         keyStats: ['dex', 'cha'],
-        abilities: [],
+        abilities: theCheatAbilities,
         spellcaster: false,
         spellSchool: [] 
+    },
+    
+    mage: {
+        playerClassName: 'Mage',
+        saveAdv: 'will',
+        saveDis: 'str',
+        armor: [ARMOR.ROBE],
+        weaponType: [WEAPONTYPE.DAGGER, WEAPONTYPE.STAFF, WEAPONTYPE.WAND],
+        hitDie: {
+            type: 'd6',
+            startingHP: 10
+        },
+        keyStats: ['int', 'wis'],
+        abilities: [],
+        spellcaster: true,
+        spellSchool: ['fire', 'ice', 'lightning']
     }
 
 }
