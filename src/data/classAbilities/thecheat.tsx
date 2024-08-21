@@ -244,4 +244,4 @@ export const theCheatAbilities: ClassAbility[] = [
         [statIncreaseOptions.intelligence, statIncreaseOptions.wisdom, statIncreaseOptions.strength]
     )
 
-]
+];
