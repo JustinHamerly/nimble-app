@@ -1,6 +1,6 @@
 import { ARMOR, WEAPONTYPE, RESOURCEPOOL } from "./enums";
 import { ClassAbility } from "./abilities";
-import { berserkerAbilities } from "./classes/berserker";
+import { berserkerAbilities } from "./classAbilities/berserker";
 
 interface ClassInterface {
     playerClassName: string;
@@ -14,7 +14,7 @@ interface ClassInterface {
     };
     keyStats: string[];
     abilities: ClassAbility[];
-    additionalResourcePool: RESOURCEPOOL;
+    additionalResourcePool?: RESOURCEPOOL;
     spellcaster: boolean;
     spellSchool: string[];
 }
@@ -39,6 +39,23 @@ export const classInfo: ClassInfoType = {
         spellSchool: []
     },
 
+    thecheat: {
+        playerClassName: 'The Cheat',
+        saveAdv: 'dex',
+        saveDis: 'str',
+        armor:[ARMOR.LEATHER],
+        weaponType: [WEAPONTYPE.DEX],
+        hitDie: {
+            type: 'd6',
+            startingHP: 10
+        },
+        keyStats: ['dex', 'cha'],
+        abilities: [],
+        spellcaster: false,
+        spellSchool: [] 
+    }
+
 }
+
 
 
