@@ -3,8 +3,7 @@ import './Main.css'
 
 import CharacterSheet from "./CharacterSheet/CharacterSheet";
 import SelectedCharacterProvider from "../../context/SelectedCharacterContext";
-import ManualEditor from "./ManualEditor/ManualEditor";
-import FlavorBioEditor from "./CharacterCreator/FlavorBioEditor";
+import CharacterCreatorPanel from "./CharacterCreator/CharacterCreatorPanel";
 // import DiceBox from "./DiceBox/DiceBox";
 // import DiceRollerContextProvider from "../../context/DiceRollerContext";
 // import DiceDisplay from "./DiceBox/DiceDisplay";
@@ -14,8 +13,7 @@ function Main() {
         <SelectedCharacterProvider>
             {/* <DiceRollerContextProvider> */}
                 <main>
-                    <ManualEditor />
-                    <FlavorBioEditor />
+                    <CharacterCreatorPanel />
                     <CharacterSheet />
                     {/* <DiceBox />
                     <DiceDisplay /> */}

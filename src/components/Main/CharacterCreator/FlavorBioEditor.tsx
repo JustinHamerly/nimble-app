@@ -52,7 +52,7 @@ function FlavorBioEditor() {
     }
 
     return (
-        <>
+        <div id='flavor-bio-editor-control'>
             <Box
                 component='form'
                 autoComplete="off"
@@ -113,7 +113,7 @@ function FlavorBioEditor() {
 
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 
