@@ -1,3 +1,7 @@
+import { fireSpells } from "./fireSpells";
+import { iceSpells } from "./iceSpells";
+import { lightingSpells } from "./lightingSpells";
+
 interface DiceRoll {
     hasDiceRoll: boolean;
     diceType: number;
@@ -67,3 +71,9 @@ export function createDiceRoll(diceType: number, diceQuantity: number, modifier:
         conditionalModifier
     };
 };
+
+export const spells = {
+    fire: fireSpells,
+    ice: iceSpells,
+    lighting: lightingSpells
+}
