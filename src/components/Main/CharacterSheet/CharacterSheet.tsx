@@ -1,17 +1,27 @@
 import React from "react";
 import './CharacterSheet.css'
 import Skills from "./Skills/Skills";
-import Stats from "./StatsAndSaves/Stats";
-import Saves from "./saves/Saves";
+import Stats from "./Stats/Stats";
+import Saves from "./Saves/Saves";
 import BioInfo from "./CharacterInfo/BioInfo";
+import HealthTracker from "./HealthTracker/HeathTracker";
+import SecondaryStats from "./SecondaryStats/SecondaryStats";
 
 function CharacterSheet () {
     return (
         <div className="char-sheet">
             <BioInfo />
-            <Stats />
-            <Saves />
-            <Skills />
+            <div id="stats-and-saves">
+                <Stats />
+                <Saves />
+            </div>
+            <div id="skills-health-secondary">
+                <Skills />
+                <div id ="health-and-secondary">
+                    <HealthTracker />
+                    <SecondaryStats />
+                </div>
+            </div>
         </div>
     )
 }
