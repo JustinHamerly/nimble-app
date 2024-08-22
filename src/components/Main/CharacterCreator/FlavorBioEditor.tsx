@@ -3,10 +3,14 @@ import './FlavorBioEditor.css'
 import { raceInfo, RaceInterface } from "../../../data/races";
 import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
 import { Box, Button, FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { AbilitiesContext } from "../../../context/AbilitiesContext";
+import { heroicAbilities } from "../../../data/abilities";
 
 function FlavorBioEditor() {
 
     const charContext = useContext(SelectedCharacterContext);
+    const abilitiesContext = useContext(AbilitiesContext);
+
     const [race, setRace] = useState(charContext?.state.flavorBio.race || '');
     const [charClass, setCharClass] = useState(charContext?.state.flavorBio.classes[0].name || '');
     const [charLevel, setCharLevel] = useState(charContext?.state.flavorBio.classes[0].level || 0);
@@ -24,12 +28,10 @@ function FlavorBioEditor() {
         }
     });
 
-    if (!charContext) return null;
-
-    const { dispatch } = charContext;
+    if (!charContext || ! abilitiesContext) return null;    
 
     const handleFlavorChange = () => {
-        dispatch({
+        charContext.dispatch({
             type: 'SET_FLAVOR_BIO',
             payload: {
                 name: charName,
@@ -40,9 +42,18 @@ function FlavorBioEditor() {
             }
         })
 
+        
+
+        abilitiesContext.dispatch({
+            type: 'ADD_CLASS_ABILITIES',
+            payload: heroicAbilities
+        })
+
         //get race info and traits and add the traits to the traits section
         //get class info.  update class saves/traits/abilities
     }
+
+
 
     const handleRaceChange = (e: SelectChangeEvent) => {
         const race = e.target.value;

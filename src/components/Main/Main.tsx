@@ -4,6 +4,7 @@ import './Main.css'
 import CharacterSheet from "./CharacterSheet/CharacterSheet";
 import SelectedCharacterProvider from "../../context/SelectedCharacterContext";
 import CharacterCreatorPanel from "./CharacterCreator/CharacterCreatorPanel";
+import AbilitiesProvider from "../../context/AbilitiesContext";
 // import DiceBox from "./DiceBox/DiceBox";
 // import DiceRollerContextProvider from "../../context/DiceRollerContext";
 // import DiceDisplay from "./DiceBox/DiceDisplay";
@@ -11,6 +12,7 @@ import CharacterCreatorPanel from "./CharacterCreator/CharacterCreatorPanel";
 function Main() {
     return (
         <SelectedCharacterProvider>
+            <AbilitiesProvider>
             {/* <DiceRollerContextProvider> */}
                 <main>
                     <CharacterCreatorPanel />
@@ -19,6 +21,7 @@ function Main() {
                     <DiceDisplay /> */}
                 </main>
             {/* </DiceRollerContextProvider> */}
+            </AbilitiesProvider>
         </SelectedCharacterProvider>
     )
 }

@@ -6,6 +6,7 @@ import Saves from "./Saves/Saves";
 import BioInfo from "./CharacterInfo/BioInfo";
 import HealthTracker from "./HealthTracker/HeathTracker";
 import SecondaryStats from "./SecondaryStats/SecondaryStats";
+import AbilityDisplay from "./AbilityDisplay/AbilityDisplay";
 
 function CharacterSheet () {
     return (
@@ -22,6 +23,7 @@ function CharacterSheet () {
                     <SecondaryStats />
                 </div>
             </div>
+            <AbilityDisplay />
         </div>
     )
 }
