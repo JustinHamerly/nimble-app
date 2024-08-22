@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import './StatAdjuster.css';
 import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
 import { RollInfo } from "../../tools/interfaces";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
@@ -235,7 +235,13 @@ function StatAdjuster() {
                     const statDown = <DownOutlined onClick={() => handleStatDecrease(statName)} style={{ color: '#CC0001', marginLeft: '2px', fontSize: "14px" }}/>
                     return (
                         <div className="stat-adjuster" key={i} id={statName + "-adjuster"}>
-                            {statUp} <span className="stat-adj-label">{statName.toUpperCase()}</span> {statDown}
+                            <div>
+                                {statUp}
+                            </div>
+                            <h3 className="stat-adj-label">{statName.toUpperCase()} {Object.values(charContext.state.stats)[i].modifier}</h3> 
+                            <div>
+                                {statDown}
+                            </div>
                         </div>
                     )
                 })
