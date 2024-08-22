@@ -17,32 +17,32 @@ export const noDiceRoll: DiceRoll = {
 interface UpcastEffect {
     text: string;
     diceRoll: DiceRoll;
-}
+};
 
 interface Upcast {
     canUpcast: boolean,
     text: string,
     upcastEffects: UpcastEffect[]
-}
+};
 
 export const noUpcast: Upcast = {
     canUpcast: false,
     text: '',
     upcastEffects: []
 
-}
+};
 
 interface Upgrade {
     hasUpgrade: boolean;
     upgradeLevel: number;
     spell: SpellAbility;
-}
+};
 
 const noUpgrade: Upgrade = {
     hasUpgrade: false,
     upgradeLevel: 0,
     spell: null as any
-}
+};
 
 export interface SpellAbility {
     tier: number;
@@ -52,9 +52,18 @@ export interface SpellAbility {
     diceRoll: DiceRoll;
     upcast: Upcast;
     upgrade: Upgrade;
-}
+};
 
 export function createSpell(tier: number, name: string, text: string, actionCost: number, diceRoll: DiceRoll = noDiceRoll, upcast: Upcast = noUpcast, upgrade: Upgrade = noUpgrade): SpellAbility {
     return {tier, name, text, actionCost, diceRoll, upcast, upgrade};
-}
+};
 
+export function createDiceRoll(diceType: number, diceQuantity: number, modifier: number = 0, conditionalModifier: string = '') {
+    return {
+        hasDiceRoll: true,
+        diceType,
+        diceQuantity,
+        modifier,
+        conditionalModifier
+    };
+};
