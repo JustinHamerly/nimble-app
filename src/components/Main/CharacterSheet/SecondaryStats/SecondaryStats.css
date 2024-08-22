@@ -1,0 +1,48 @@
+#secondary-stats-section{
+    border: 1px, solid, lightgray;
+    background-color: white;
+    width: 250px;
+    height: 105px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+}
+
+#armor-tracker{
+    width: 30%;
+    height: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    align-items:center
+}
+
+#speed-tracker{
+    width: 30%;
+    height: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    align-items:center
+}
+
+#initiative-tracker{
+    width: 30%;
+    height: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    align-items:center
+}
+
+.display-block-sm {
+    height: 50px;
+    width: 50px;
+    border: 1px, solid, gray;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

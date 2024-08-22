@@ -5,6 +5,7 @@ import Stats from "./Stats/Stats";
 import Saves from "./Saves/Saves";
 import BioInfo from "./CharacterInfo/BioInfo";
 import HealthTracker from "./HealthTracker/HeathTracker";
+import SecondaryStats from "./SecondaryStats/SecondaryStats";
 
 function CharacterSheet () {
     return (
@@ -18,7 +19,7 @@ function CharacterSheet () {
                 <Skills />
                 <div id ="health-and-secondary">
                     <HealthTracker />
-                    <h2>Secondary Stats</h2>
+                    <SecondaryStats />
                 </div>
             </div>
         </div>
