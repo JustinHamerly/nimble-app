@@ -9,6 +9,7 @@ function FlavorBioEditor() {
     const charContext = useContext(SelectedCharacterContext);
     const [race, setRace] = useState(charContext?.state.flavorBio.race || '');
     const [charClass, setCharClass] = useState(charContext?.state.flavorBio.classes[0].name || '');
+    const [charLevel, setCharLevel] = useState(charContext?.state.flavorBio.classes[0].level || 0);
     const [charName, setCharName] = useState(charContext?.state.flavorBio.name || '');
     const [weight, setWeight] = useState(charContext?.state.flavorBio.weight || '');
     const [height, setHeight] = useState(charContext?.state.flavorBio.height || '');
@@ -33,7 +34,7 @@ function FlavorBioEditor() {
             payload: {
                 name: charName,
                 race: race,
-                classes: [{ name: charClass, level: 1 }],
+                classes: [{ name: charClass, level: charLevel }],
                 weight: weight,
                 height: height
             }
@@ -91,6 +92,21 @@ function FlavorBioEditor() {
                         <MenuItem className="menu-item" value={'oathsworn'}>Oathsworn</MenuItem>
                     </Select>
                     <FormHelperText>Class</FormHelperText>
+                </FormControl>
+                <FormControl className="bio-form-field">
+                    <Select
+                        id="class-level-select"
+                        value={charLevel.toString()}
+                        variant="standard"
+                        onChange={(e: SelectChangeEvent) => setCharLevel(parseInt(e.target.value))}
+                    >
+                        <MenuItem className="menu-item" value={'1'}>1</MenuItem>
+                        <MenuItem className="menu-item" value={'2'}>2</MenuItem>
+                        <MenuItem className="menu-item" value={'3'}>3</MenuItem>
+                        <MenuItem className="menu-item" value={'4'}>4</MenuItem>
+                        <MenuItem className="menu-item" value={'5'}>5</MenuItem>
+                    </Select>
+                    <FormHelperText>Class Level</FormHelperText>
                 </FormControl>
                 <FormControl className="bio-form-field">
                     <TextField id="weight-field" variant="standard" value={weight} onChange={(e) => setWeight(e.target.value)} />
