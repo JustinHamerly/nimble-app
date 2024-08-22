@@ -46,12 +46,15 @@ function AbilityDisplay() {
     return (
         <>
             <section className='ability-display'>
+                <h4>ACTIONS</h4>
                 {abilities.action.map(ability => <ClassAbilityDisplay ability={ability} />)}
             </section>
             <section className='ability-display'>
+                <h4>REACTIONS</h4>
                 {abilities.reaction.map(ability => <ClassAbilityDisplay ability={ability} />)}
             </section>
             <section className='ability-display'>
+                <h4>PASSIVES</h4>
                 {abilities.passive.map(ability => <ClassAbilityDisplay ability={ability} />)}
             </section>
         </>

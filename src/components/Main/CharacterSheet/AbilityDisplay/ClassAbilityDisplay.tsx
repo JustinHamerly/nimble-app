@@ -1,4 +1,5 @@
 import React from "react";
+import './ClassAbilityDisplay.css'
 import { ClassAbility } from "../../../../data/abilities";
 
 interface ClassAbilityDisplayProps {
@@ -10,17 +11,21 @@ const ClassAbilityDisplay: React.FC<ClassAbilityDisplayProps> = ({ ability: clas
 
     return (
         <div className='class-ability-display'>
-            <div>
-                <h4>Level: {classAbility.level}</h4>
-                {classAbility.action.has &&
-                    <h4>Action: {classAbility.action.count} </h4>
+            <div className='level-action-display'>
+                <h4 className="ability-title">{classAbility.name}</h4>
+                {(classAbility.level > 0) &&
+                    <h6>Level: {classAbility.level}</h6>
+                }
+                {(classAbility.action.has && classAbility.action.count > 0) && 
+                    <h6>Action: {classAbility.action.count} </h6>
                 }
                 {classAbility.reaction.has &&
-                    <h4>Action: {classAbility.reaction.count}</h4>
+                    <h6>Action: {classAbility.reaction.count}</h6>
                 }
             </div>
-            <h4 className="ability-title">{classAbility.name}</h4>
-            <p className="ability-text">{classAbility.text}</p>
+            <div className="ability-text-box">
+                <p className="ability-text">{classAbility.text}</p>
+            </div>
         </div>
     )
 };
