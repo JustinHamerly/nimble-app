@@ -11,7 +11,7 @@ type ActionType =
         section: 'stats' | 'saves' | 'skills';
         key: string;
         rollInfo: RollInfo
-        }}
+        }};
 
 interface StateType {
     flavorBio: FlavorBio;
@@ -40,7 +40,7 @@ interface StateType {
         slightofhand: RollInfo,
         stealth: RollInfo
     };
-}
+};
 
 
 
@@ -69,98 +69,117 @@ const initialState: StateType = {
         str: {
             name: 'strength',
             stat: 'str',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         dex: {
             name: 'dexterity',
             stat: 'dex',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         int: {
             name: 'intelligence',
             stat: 'int',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         wis: {
             name: 'wisdom',
             stat: 'wis',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         cha: {
             name: 'charisma',
             stat: 'cha',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         }
     },
     saves:{
         str: {
             name: 'strength',
             stat: 'str',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         dex: {
             name: 'dexterity',
             stat: 'dex',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         will: {
             name: 'will',
             stat: 'int',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         }
     },
     skills: {
         arcana: {
             name: 'arcana',
             stat: 'int',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         examination: {
             name: 'examination',
             stat: 'int',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         influence: {
             name: 'influence',
             stat: 'cha',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         insight: {
             name: 'insight',
             stat: 'cha',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         lore: {
             name: 'lore',
             stat: 'int',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         might: {
             name: 'might',
             stat: 'str',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         naturecraft: {
             name: 'naturecraft',
             stat: 'wis',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         perception: {
             name: 'perception',
             stat: 'wis',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         slightofhand: {
             name: 'slightofhand',
             stat: 'dex',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         },
         stealth: {
             name: 'stealth',
             stat: 'dex',
-            modifier: 0
+            modifier: 0,
+            additionalModifier: 0
         }
-    }
+    },
+
 }
 
 const reducer = (state: StateType, action: ActionType): StateType => {

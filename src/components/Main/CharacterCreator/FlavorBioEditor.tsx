@@ -5,6 +5,7 @@ import { SelectedCharacterContext } from "../../../context/SelectedCharacterCont
 import { Box, Button, FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { AbilitiesContext } from "../../../context/AbilitiesContext";
 import { heroicAbilities } from "../../../data/abilities";
+import getAbilityActions from "../../../context/AbilitiesActions";
 
 function FlavorBioEditor() {
 
@@ -19,8 +20,8 @@ function FlavorBioEditor() {
     const [height, setHeight] = useState(charContext?.state.flavorBio.height || '');
 
     const [selectedRaceInfo, setSelectedRaceInfo] = useState<RaceInterface>({
-        name: '', 
-        size: '', 
+        name: '',
+        size: '',
         description: '',
         ability: {
             name: '',
@@ -28,7 +29,7 @@ function FlavorBioEditor() {
         }
     });
 
-    if (!charContext || ! abilitiesContext) return null;    
+    if (!charContext || !abilitiesContext) return null;
 
     const handleFlavorChange = () => {
         charContext.dispatch({
@@ -42,13 +43,19 @@ function FlavorBioEditor() {
             }
         })
 
-        
+
 
         abilitiesContext.dispatch({
             type: 'ADD_CLASS_ABILITIES',
             payload: heroicAbilities
         })
 
+        const classAbilities = getAbilityActions().getClassSpellsByLevel(charClass, charLevel);
+
+        abilitiesContext.dispatch({
+            type: 'ADD_CLASS_ABILITIES',
+            payload: classAbilities
+        })
         //get race info and traits and add the traits to the traits section
         //get class info.  update class saves/traits/abilities
     }
@@ -58,7 +65,7 @@ function FlavorBioEditor() {
     const handleRaceChange = (e: SelectChangeEvent) => {
         const race = e.target.value;
         setRace(race);
-        if (raceInfo[race]){
+        if (raceInfo[race]) {
             setSelectedRaceInfo(raceInfo[race]);
         }
     }
@@ -131,14 +138,18 @@ function FlavorBioEditor() {
                 <Button id="change-flavor-button" onClick={handleFlavorChange}>SAVE</Button>
             </Box>
             <div id='bio-info-preview-box' className="flavor-box">
-                <div id="race-info">
-                    <h3>{selectedRaceInfo.name} ({selectedRaceInfo.size})</h3>
-                    <h3>{selectedRaceInfo.description}</h3>
-                    <h3>{selectedRaceInfo.ability.name} {selectedRaceInfo.ability.description}</h3>
-                </div>
-                <div id="class-info">
+                {selectedRaceInfo.name &&
+                    <div id="race-info">
+                        <h3>{selectedRaceInfo.name} ({selectedRaceInfo.size})</h3>
+                        <h3>{selectedRaceInfo.description}</h3>
+                        <h3>{selectedRaceInfo.ability.name} {selectedRaceInfo.ability.description}</h3>
+                    </div>
+                }
+                {
+                    <div id="class-info">
 
-                </div>
+                    </div>
+                }
             </div>
         </div>
     )

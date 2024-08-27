@@ -1,8 +1,8 @@
 #secondary-stats-section{
     border: 1px, solid, lightgray;
     background-color: white;
-    width: 250px;
-    height: 105px;
+    width: 660px;
+    height: 90px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -10,7 +10,6 @@
 }
 
 #armor-tracker{
-    width: 30%;
     height: 105px;
     display: flex;
     flex-direction: column;
@@ -19,7 +18,6 @@
 }
 
 #speed-tracker{
-    width: 30%;
     height: 105px;
     display: flex;
     flex-direction: column;
@@ -28,7 +26,6 @@
 }
 
 #initiative-tracker{
-    width: 30%;
     height: 105px;
     display: flex;
     flex-direction: column;
@@ -39,6 +36,17 @@
 .display-block-sm {
     height: 50px;
     width: 50px;
+    border: 1px, solid, gray;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.display-block-lg {
+    height: 50px;
+    width: 75px;
     border: 1px, solid, gray;
     border-radius: 10px;
     margin-top: 5px;

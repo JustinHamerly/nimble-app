@@ -1,37 +1,26 @@
-import { ClassAbility, createAbility, defaultAction, Option, statIncreaseOptions } from "../abilities";
+import { ClassAbility, createAbility, defaultAction, defaultLimit, Limiter, Option, statIncreaseOptions } from "../abilities";
 
 const theCheatSubclassAbilities: Record<string, ClassAbility> = {
     silenttakedown: createAbility(
         3,
         'Silent Takedown',
-        `If a creature dies from your sneak attack, you may turn invisible until you attack again or the end of your next turn.`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `If a creature dies from your sneak attack, you may turn invisible until you attack again or the end of your next turn.`
     ),
     leavenotrace: createAbility(
         3,
         'Leave No Trace',
-        `Advantage on stealth checks when you are at full health.`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `Advantage on stealth checks when you are at full health.`
     ),
     lowblow: createAbility(
         3,
         'Low Blow',
         `When you sneak attack, you may spend 2 Actions to Incapacitate your target for their next turn on a failed STR save (DC 10+DEX). Save or fail, they are taunted by you for the remainder of the encounter.`,
-        {has: true, count: 2},
-        defaultAction,
-        defaultAction
+        {has: true, count: 2}
     ),
     sweettalk: createAbility(
         3,
         'Sweet Talk',
-        `You may gain advantage on all Influence checks with characters you've just met. This lasts until you fail an influence check with them or until you meet a 2nd time. Disadvantage on Influence checks with them after you use this ability.`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `You may gain advantage on all Influence checks with characters you've just met. This lasts until you fail an influence check with them or until you meet a 2nd time. Disadvantage on Influence checks with them after you use this ability.`
     )
 };
 
@@ -57,23 +46,17 @@ const underhandedAbility: Record<string, ClassAbility> = {
         `When you Defend against a melee attack, force the attacker to reroll the attack and impose disadvantage on all their attacks this round. 1/encounter (you've got to collect more sand!).`,
         defaultAction,
         defaultAction,
-        {has: true, count: 1}
+        {has: true, count: 1, limiter: Limiter.INITIATIVE}
     ),
     imouttahere: createAbility(
         4,
         `I'm Outta Here!`,
-        `When an ally within 15 ft is critically hit, you may move up to half your speed and turn invisible until the end of your next turn.`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `When an ally within 15 ft is critically hit, you may move up to half your speed and turn invisible until the end of your next turn.`
     ),
     feintingattack: createAbility(
         4,
         'Feinting Attack',
-        `If you would miss for the second time in a single round, you may change the die roll to its maximum instead.`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `If you would miss for the second time in a single round, you may change the die roll to its maximum instead.`
     ),
     twisttheblade: createAbility(
         4,
@@ -81,15 +64,13 @@ const underhandedAbility: Record<string, ClassAbility> = {
         `When you land a sneak attack, you may force the target to make a STR save (DC 10+CHA). On a failure, instead of rolling your sneak attack dice, they deal the maximum amount of damage. 1/encounter.`,
         defaultAction,
         defaultAction,
-        {has: true, count: 1}
+        {has: true, count: 1, limiter: Limiter.INITIATIVE}
     ),
     shadowstrike: createAbility(
         4,
         'Shadow Strike',
         `2 Actions: Teleport up to 20 ft. away to a place you can see and make a melee attack. If you crit, you may teleport again.`,
-        {has: true, count: 2},
-        defaultAction,
-        defaultAction
+        {has: true, count: 2}
     )
 };
 
@@ -130,10 +111,7 @@ export const theCheatAbilities: ClassAbility[] = [
     createAbility(
         1,
         'Vicious Opportunist',
-        `1/round. When you hit a distracted target, you may change the Primary Die roll to whatever you like (changing a die to the maximum value counts as a critical hit). Any target that cannot see you, is taunted by or adjacent to an ally is distracted.`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `1/round. When you hit a distracted target, you may change the Primary Die roll to whatever you like (changing a die to the maximum value counts as a critical hit). Any target that cannot see you, is taunted by or adjacent to an ally is distracted.`
     ),
     
     createAbility(
@@ -142,7 +120,7 @@ export const theCheatAbilities: ClassAbility[] = [
         `The first critical hit you make each turn deals an additional 1d6 damage.`,
         defaultAction,
         defaultAction,
-        defaultAction,
+        defaultLimit,
         false,
         [],
         true,
@@ -151,19 +129,13 @@ export const theCheatAbilities: ClassAbility[] = [
             createAbility(
                 3,
                 'Sneak Attack (2)',
-                `Your sneak attack becomes 2d6.`,
-                defaultAction,
-                defaultAction,
-                defaultAction
+                `Your sneak attack becomes 2d6.`
             ),
 
             createAbility(
                 5,
                 'Sneak Attack (3)',
-                `Your sneak attack becomes 3d6.`,
-                defaultAction,
-                defaultAction,
-                defaultAction
+                `Your sneak attack becomes 3d6.`
             )
 
         ]
@@ -179,7 +151,7 @@ export const theCheatAbilities: ClassAbility[] = [
             •You may choose to have advantage on skill checks while playing any games, competitions, or placing wagers. If you're caught though...`,
         defaultAction,
         defaultAction,
-        {has: true, count: 1}
+        {has: true, count: 1, limiter: Limiter.DAY}
     ),
 
     createAbility(
@@ -188,7 +160,7 @@ export const theCheatAbilities: ClassAbility[] = [
         'Choose a Cheat subclass',
         defaultAction,
         defaultAction,
-        defaultAction,
+        defaultLimit,
         true,
         [theCheatSubclasses.assassin, theCheatSubclasses.scoundrel]
     ),
@@ -196,10 +168,7 @@ export const theCheatAbilities: ClassAbility[] = [
     createAbility(
         3,
         `Thieve's Cant`,
-        `You learn the secret language of rogues and scoundrels`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `You learn the secret language of rogues and scoundrels`
     ),
 
     createAbility(
@@ -208,7 +177,7 @@ export const theCheatAbilities: ClassAbility[] = [
         `Choose an underhanded ability. If you spend a night talking shop with other roguish types you can exchange one ability for another.`,
         defaultAction,
         defaultAction,
-        defaultAction,
+        defaultLimit,
         true,
         underhandedAbilityOptions
     ),
@@ -219,7 +188,7 @@ export const theCheatAbilities: ClassAbility[] = [
         '+1 DEX or CHA.',
         defaultAction,
         defaultAction,
-        defaultAction,
+        defaultLimit,
         true,
         [statIncreaseOptions.dexterity, statIncreaseOptions.charisma]
     ),
@@ -227,10 +196,7 @@ export const theCheatAbilities: ClassAbility[] = [
     createAbility(
         5,
         'Quick Read',
-        `Gain advantage on your first Assess check every encounter. Gain advantage on a the first Insight check you make with NPCs.`,
-        defaultAction,
-        defaultAction,
-        defaultAction
+        `Gain advantage on your first Assess check every encounter. Gain advantage on a the first Insight check you make with NPCs.`
     ),
 
     createAbility(
@@ -239,7 +205,7 @@ export const theCheatAbilities: ClassAbility[] = [
         '+1 INT, WIS or STR.',
         defaultAction,
         defaultAction,
-        defaultAction,
+        defaultLimit,
         true,
         [statIncreaseOptions.intelligence, statIncreaseOptions.wisdom, statIncreaseOptions.strength]
     )
