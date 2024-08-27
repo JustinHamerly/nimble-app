@@ -17,6 +17,10 @@ function StatAdjuster() {
 
         statBlockToUpdate.modifier += 1;
 
+        if (statType === 'wis'){
+            initiativeChange(1);
+        }
+
         dispatch({
             type: 'UPDATE_ROLL_INFO',
             payload: {
@@ -24,7 +28,7 @@ function StatAdjuster() {
                 key: statType,
                 rollInfo: statBlockToUpdate
             }
-        })
+        });
 
         if (statType === 'str') {
             dispatch({
@@ -52,7 +56,7 @@ function StatAdjuster() {
             })
         } else if (statType === 'int' || statType === 'cha' || statType === 'wis') {
             checkAndUpdateWillSave();
-        }
+        };
 
         const skillsToUpdate = returnAssociatedSkills(statType);
         skillsToUpdate.forEach(skill => {
@@ -67,8 +71,10 @@ function StatAdjuster() {
                     }
                 }
             })
-        })
+        });
     };
+
+
 
     const handleStatDecrease = (statType: string) => {
         const statArray: RollInfo[] = Object.values(state.stats);
@@ -76,6 +82,10 @@ function StatAdjuster() {
         if (!statBlockToUpdate) return;
 
         statBlockToUpdate.modifier -= 1;
+
+        if (statType === 'wis'){
+            initiativeChange(-1);
+        }
 
         dispatch({
             type: 'UPDATE_ROLL_INFO',
@@ -223,6 +233,18 @@ function StatAdjuster() {
 
         return []
     };
+
+    const initiativeChange = (amount: number) => {
+        const currentInitiative = state.mechanicalStats.initiative;
+        const newInitiative = currentInitiative + amount;
+        dispatch({
+            type: 'SET_MECHANICAL_STATS',
+            payload: {
+                ...state.mechanicalStats, 
+                initiative: newInitiative
+            }
+        });
+    }
 
     const stats = ['str', 'dex', 'int', 'wis', 'cha'];
 

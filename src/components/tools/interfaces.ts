@@ -2,6 +2,7 @@ export interface RollInfo {
     name: string;
     stat: string;
     modifier: number;
+    additionalModifier: number;
     diceAmount?: number;
     diceType?: number;
     advantages?: number;

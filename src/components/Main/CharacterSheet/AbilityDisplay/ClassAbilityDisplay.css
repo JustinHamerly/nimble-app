@@ -1,0 +1,26 @@
+.class-ability-display{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.level-action-display{
+    width: 75px;
+    margin: 10px;
+}
+
+.ability-text-box{
+    width: 80%;
+    margin: auto;
+    text-align: left;
+}
+
+.ability-title {
+    font-weight:bold;
+    font-size: 14px;
+}
+
+p{
+    font-size: 12px;
+}

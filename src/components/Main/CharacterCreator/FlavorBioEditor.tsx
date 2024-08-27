@@ -3,10 +3,15 @@ import './FlavorBioEditor.css'
 import { raceInfo, RaceInterface } from "../../../data/races";
 import { SelectedCharacterContext } from "../../../context/SelectedCharacterContext";
 import { Box, Button, FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { AbilitiesContext } from "../../../context/AbilitiesContext";
+import { heroicAbilities } from "../../../data/abilities";
+import getAbilityActions from "../../../context/AbilitiesActions";
 
 function FlavorBioEditor() {
 
     const charContext = useContext(SelectedCharacterContext);
+    const abilitiesContext = useContext(AbilitiesContext);
+
     const [race, setRace] = useState(charContext?.state.flavorBio.race || '');
     const [charClass, setCharClass] = useState(charContext?.state.flavorBio.classes[0].name || '');
     const [charLevel, setCharLevel] = useState(charContext?.state.flavorBio.classes[0].level || 0);
@@ -15,8 +20,8 @@ function FlavorBioEditor() {
     const [height, setHeight] = useState(charContext?.state.flavorBio.height || '');
 
     const [selectedRaceInfo, setSelectedRaceInfo] = useState<RaceInterface>({
-        name: '', 
-        size: '', 
+        name: '',
+        size: '',
         description: '',
         ability: {
             name: '',
@@ -24,12 +29,10 @@ function FlavorBioEditor() {
         }
     });
 
-    if (!charContext) return null;
-
-    const { dispatch } = charContext;
+    if (!charContext || !abilitiesContext) return null;
 
     const handleFlavorChange = () => {
-        dispatch({
+        charContext.dispatch({
             type: 'SET_FLAVOR_BIO',
             payload: {
                 name: charName,
@@ -40,14 +43,29 @@ function FlavorBioEditor() {
             }
         })
 
+
+
+        abilitiesContext.dispatch({
+            type: 'ADD_CLASS_ABILITIES',
+            payload: heroicAbilities
+        })
+
+        const classAbilities = getAbilityActions().getClassSpellsByLevel(charClass, charLevel);
+
+        abilitiesContext.dispatch({
+            type: 'ADD_CLASS_ABILITIES',
+            payload: classAbilities
+        })
         //get race info and traits and add the traits to the traits section
         //get class info.  update class saves/traits/abilities
     }
 
+
+
     const handleRaceChange = (e: SelectChangeEvent) => {
         const race = e.target.value;
         setRace(race);
-        if (raceInfo[race]){
+        if (raceInfo[race]) {
             setSelectedRaceInfo(raceInfo[race]);
         }
     }
@@ -120,14 +138,18 @@ function FlavorBioEditor() {
                 <Button id="change-flavor-button" onClick={handleFlavorChange}>SAVE</Button>
             </Box>
             <div id='bio-info-preview-box' className="flavor-box">
-                <div id="race-info">
-                    <h3>{selectedRaceInfo.name} ({selectedRaceInfo.size})</h3>
-                    <h3>{selectedRaceInfo.description}</h3>
-                    <h3>{selectedRaceInfo.ability.name} {selectedRaceInfo.ability.description}</h3>
-                </div>
-                <div id="class-info">
+                {selectedRaceInfo.name &&
+                    <div id="race-info">
+                        <h3>{selectedRaceInfo.name} ({selectedRaceInfo.size})</h3>
+                        <h3>{selectedRaceInfo.description}</h3>
+                        <h3>{selectedRaceInfo.ability.name} {selectedRaceInfo.ability.description}</h3>
+                    </div>
+                }
+                {
+                    <div id="class-info">
 
-                </div>
+                    </div>
+                }
             </div>
         </div>
     )

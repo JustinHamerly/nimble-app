@@ -12,8 +12,6 @@ interface StateType {
     spellAbilities: SpellAbility[];
 }
 
-
-
 const initialState: StateType = {
     classAbilities: [],
     spellAbilities: []
