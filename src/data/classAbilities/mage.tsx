@@ -1,233 +1,241 @@
-import { ClassAbility, createAbility, defaultAction, defaultLimit, Limiter, Option, statIncreaseOptions } from "../abilities";
+import { AbilityChoice, Choice, ClassAbility, createAbility, defaultAction, defaultLimit, Limiter, SubclassChoice } from "../abilities";
 
-const mageSubclassAbilities: Record<string, ClassAbility> = {
-    demandcontrol: createAbility(
-        3,
-        'Demand Control',
-        `Whenever you cast a Tiered spell, you may spend 1 additional Mana to Demand Control: choose 1 option from the Control Table. If the spell misses, you must Demand Control for free.`,
-        defaultAction,
-        defaultAction,
-        defaultLimit,
-        false,
-        [],
-        true,
-        [
-
-            createAbility(
-                3,
-                'Control Table',
-                `Choose an option that has not been chosen yet. Resets when you roll initiative or all options have been chosen.`,
-                defaultAction,
-                defaultAction,
-                defaultLimit,
-                false,
-                [],
-                true,
-                [
-
-                    createAbility(
-                        3,
-                        `I Insist`,
-                        `Cast a Cantrip for free.`,
-                        defaultAction,
-                        defaultAction,
-                        {has: true, count: 1, limiter: Limiter.INITIATIVE}
-                    ),
-
-                    createAbility(
-                        3,
-                        `Burn`,
-                        `A creature of your choice within 60 ft. gains the burning condition.`,
-                        defaultAction,
-                        defaultAction,
-                        {has: true, count: 1, limiter: Limiter.INITIATIVE}
-                    ),
-
-                    createAbility(
-                        3,
-                        `No`,
-                        `An enemy of your choice cannot harm you during its next turn.`,
-                        defaultAction,
-                        defaultAction,
-                        {has: true, count: 1, limiter: Limiter.INITIATIVE}
-                    ),
-
-                    createAbility(
-                        3,
-                        `Lose Control`,
-                        ` An enemy immediately gains control of you until the end of your next turn (it can’t spend your mana, you get an additional turn after that).`,
-                        defaultAction,
-                        defaultAction,
-                        {has: true, count: 1, limiter: Limiter.INITIATIVE}
-                    )
-
-                ]
-            )
-
-        ]
-    ),
-
-    invokechaos: createAbility(
-        3,
-        'Invoke Chaos',
-        `Whenever you cast a Tiered spell, you may spend 1 additional Mana to Invoke Chaos:  roll on the Chaos Table.  If the spell is a critical hit, you must Invoke Chaos for free.`
-    )
-};
-
-const mageSubclasses: Record<string, Option> = {
-    mageofcontrol: {
-        title: 'Mage of Control',
-        effect: 'Gain the Demand Control ability.',
-        value: 'mageofcontrol',
-        abilities: [mageSubclassAbilities.demandcontrol]
-    },
-    mageofchaos: {
-        title: 'Mage of Chaos',
-        effect: 'Gain the Invoke Chaos ability.',
-        value: 'mageofchaos',
-        abilities: [mageSubclassAbilities.invokechaos]
-    }
-};
-
-const spellshaperAbility: Record<string, ClassAbility> = {
-    extradimensionalvision: createAbility(
-        3,
-        'Extra-Dimensional Vision',
-        `(2 Mana) You may ignore the line of sight requirement of a spell. Your spell will phase though barriers and obstacles to reach a target you know of within range.`
-    ),
-    stretchtime: createAbility(
-        3,
-        'Stretch Time',
-        `(2 Mana) Reduce the Action cost by 1.`
-    ),
-    echocasting: createAbility(
-        3,
-        'Echo Casting',
-        `(2x Mana). When you cast a tiered, single target spell, you may cast a copy of that spell on a 2nd target for free.`
-    ),
-    elementalmorph: createAbility(
-        3,
-        'Elemental Morph',
-        `(1 Mana) Change the damage tpe of the spell.`
-    ),
-    slowcasting: createAbility(
-        3,
-        'Slow Casting',
-        `(+1 Action) Reduce the Mana cost of a spell by 2.`
-    )
-};
-
-const spellshaperAbilityOptions: Option[] = [
-    {
-        title: 'Extra-Dimensional Vision',
-        effect: '',
-        value: 'extradimensionalvision',
-        abilities: [spellshaperAbility.extradimensionalvision]
-    },
-    {
-        title: 'Stretch Time',
-        effect: '',
-        value: 'stretchtime',
-        abilities: [spellshaperAbility.stretchtime]
-    },
-    {
-        title: 'Echo Casting',
-        effect: '',
-        value: 'echocasting',
-        abilities: [spellshaperAbility.echocasting]
-    },
-    {
-        title: 'Elemental Morph',
-        effect: '',
-        value: 'elementalmorph',
-        abilities: [spellshaperAbility.elementalmorph]
-    },
-    {
-        title: 'Slow Casting',
-        effect: '',
-        value: 'slowcasting',
-        abilities: [spellshaperAbility.slowcasting]
-    }
-];
-
-export const mageAbilities: ClassAbility[] = [
-    createAbility(
-        1,
-        'Elemental Spellcasting',
-        `You know Fire, Ice and Lightning cantrips.`
-    ),
-
-    createAbility(
-        2,
-        'Tier 1 Spells',
-        `You unlock Tier 1 Fire, Ice and Lightning spells and gain a Mana pool equal to 2+INT.  Each time you gain a Mage level, your mana pool increases by 2; and by 1 whenever your INT increases.`
-    ),
-
+const mageAbilities: ClassAbility[] = [
+    
     createAbility(
         2,
         'Talented Researcher',
-        `Gain advantage on Arcana or Lore checks when you have access to a large amount of books and at least 12 hours to study.`
-    ),
-
-    createAbility(
-        3,
-        'Subclass',
-        'Choose a Mage subclass',
-        defaultAction,
-        defaultAction,
-        defaultLimit,
-        true,
-        [mageSubclasses.mageofchaos, mageSubclasses.mageofchaos]
-    ),
-
-    createAbility(
-        3,
-        'Spell Shaper',
-        `You gain the ability to empower your spells with powerful effects by spending additional mana. You may use 1 Spell Shaper ability per turn. Choose 2 abilities.`,
-        defaultAction,
-        defaultAction,
-        defaultLimit,
-        true,
-        spellshaperAbilityOptions
+        `Gain advantage on Arcana or Lore checks when you have access to a large amount of books and at least 12 hours to study.`,
+        'mage'
     ),
 
     createAbility(
         4,
-        'Tier 2 Spells',
-        `You may now cast tier 2 Fire, Ice and Lightning spells and upcast spells to tier 2.`
-    ),
-
-    createAbility(
-        4,
-        'Key Stat Increase',
-        '+1 INT or WIS.',
-        defaultAction,
-        defaultAction,
-        defaultLimit,
-        true,
-        [statIncreaseOptions.intelligence, statIncreaseOptions.wisdom]
+        'Spellshaper',
+        'You gain the ability to empower your spells with powerful effects by spending additional resources. You may use 1 Spell Shaper ability per turn. Choose 2 abilities at level 4, and one additional at level 9 and 13. You may exchange one ability for another whenever you are tutored by a higher level Mage during a Long Rest, and also at level 9 and 13 when gaining new Spellshaper Abilities.',
+        'mage'
     ),
 
     createAbility(
         5,
         'Elemental Surge',
-        'A surge of adrenaline and your affinity with the elements grants you additional power as combat begins.  When you roll intitative, roll 1d4 and regain that much mana (this expires at the end of combat if unused).'
-    ),
-
-    createAbility(
-        5,
-        'Secondary Stat Increase',
-        '+1 STR, DEX or CHA',
+        'A surge of adrenaline and your affinity with the elements grants you additional power as combat begins.  When you roll intitative, roll 1d4 and regain that much mana (this expires at the end of combat if unused).',
+        'mage',
         defaultAction,
         defaultAction,
         defaultLimit,
         true,
-        [statIncreaseOptions.strength, statIncreaseOptions.dexterity, statIncreaseOptions.charisma]
+        [
+
+            createAbility(
+                10,
+                'Elemental Surge (2)',
+                `Your Elemental Surge ability is now 2d4+Wis instead.`,
+                'mage'
+            ),
+
+            createAbility(
+                17,
+                'Elemental Surge (3)',
+                `Your Elemental Surge ability is now 3d4+WIS instead.`,
+                'mage'
+            )
+
+        ]
     ),
 
     createAbility(
-        5,
-        'Upgraded Cantrips',
-        `Your cantrips grow stronger.`
+        20,
+        'Epic Mage',
+        `Increase any two of your stats by 1.  The first tiered spell you cast each encounter costs 5 mana less.`,
+        'mage'
+    )
+
+];
+
+const mageOfControlSubclassAbilities: ClassAbility[] = [
+    createAbility(
+        3,
+        'Demand Control',
+        `Whenever you cast a Tiered spell, you may spend 1 additional Mana to Demand Control: choose 1 option from the Control Table. If the spell misses, you must Demand Control for free.`,
+        'mage of control'
+    ),
+    createAbility(
+        7,
+        'At Any Cost',
+        `Learn one cantrip and one tiered spell from the Necrotic school. You may change these whenever you Long Rest.`,
+        'mage of control'
+    ),
+    createAbility(
+        7,
+        'Nullify',
+        `Ignore all disadvantage and other negative effects on your next Action this turn. 1/Long Rest.`,
+        'mage of control',
+        defaultAction,
+        defaultAction,
+        {
+            has: true,
+            count: 1,
+            limiter: Limiter.LONGREST
+        }
+    ),
+    createAbility(
+        11,
+        'Steel Will',
+        `Whenever you would fail a concentration check, you may succeed instead. 1/Long Rest. Whenever you roll a 1 on an Elemental Surge die, you may reroll it once.`,
+        'mage of control',
+        defaultAction,
+        defaultAction,
+        {
+            has: true,
+            count: 1,
+            limiter: Limiter.LONGREST
+        }
+    ),
+    createAbility(
+        15,
+        'Supreme Control',
+        'You may trigger your Demand Control effects twice.',
+        'mage of control'
     )
 ];
+
+const mageOfChaosSubclassAbilities: ClassAbility[] = [
+
+    createAbility(
+        3,
+        'Invoke Chaos',
+        `Whenever you cast a Tiered spell, you may spend 1 additional Mana to Invoke Chaos:  roll on the Chaos Table.  If the spell is a critical hit, you must Invoke Chaos for free.`,
+        'mage of chaos'
+    ),
+
+    createAbility(
+        7,
+        'Tempest Mage',
+        `Learn one cantrip and one Tiered spell from the Wind school. You may change these whenever you Long Rest.`,
+        'mage of chaos'
+    ),
+
+    createAbility(
+        7,
+        'Chaos Lash',
+        `(Reaction, 1/ Encounter) When an enemy moves adjacent to you, they are pushed back 10 ft. and knocked prone on a failed WILL save.`,
+        'mage of chaos',
+        defaultAction,
+        {
+            has: true,
+            count: 1
+        },
+        {
+            has: true,
+            count: 1,
+            limiter: Limiter.ENCOUNTER
+        }
+    ),
+
+    createAbility(
+        11,
+        'Thrive In Chaos',
+        `Whenever you Invoke Chaos, you may roll twice and cause both effects. 1/Long Rest you may choose which roll to use instead.`,
+        'mage of chaos',
+        defaultAction,
+        defaultAction,
+        {
+            has: true,
+            count: 1,
+            limiter: Limiter.LONGREST
+        }
+    ),
+
+    createAbility(
+        15,
+        'Master of Chaos',
+        'mage of chaos',
+        'Whenever you Invoke Chaos, roll with advantage.'
+    )
+
+];
+
+const spellshaperAbilities: ClassAbility[] = [
+    createAbility(
+        0,
+        'Extra-Dimensional Vision',
+        `(2 Mana) You may ignore the line of sight requirement of a spell. Your spell will phase though barriers and obstacles to reach a target you know of within range.`,
+        'spellshaper'
+    ),
+    createAbility(
+        0,
+        'Stretch Time',
+        `(2 Mana) Reduce the Action cost by 1.`,
+        'spellshaper'
+    ),
+    createAbility(
+        0,
+        'Echo Casting',
+        `(2x Mana). When you cast a tiered, single target spell, you may cast a copy of that spell on a 2nd target for free.`,
+        'spellshaper'
+    ),
+    createAbility(
+        0,
+        'Elemental Destruction',
+        `(1+ Mana) When you hit with a spell, you may spend 1 or more Mana (up to your WIS) to reroll any single die per Mana spent.`,
+        'spellshaper'
+    ),
+    createAbility(
+        0,
+        'Dimensional Reach',
+        `(1+ Mana) Increase the range of a spell by 30 ft. for each additional Mana.`,
+        'spellshaper'
+    ),
+    createAbility(
+        0,
+        'Methodical Spellweaver',
+        `(1 Action) Reduce the Mana cost of a spell by 2.`,
+        'spellshaper'
+    ),
+    createAbility(
+        0,
+        'Elemental Transmutation',
+        `(1 Mana) Change the damage type of the spell.`,
+        'spellshaper'
+    )
+];
+
+const keyStatIncreaseChoices: Choice = {
+    name: 'Key Stat Increase',
+    text: 'Increase Intelligence or Wisdom at levels 4, 8, 12 and 16',
+    levels: [4, 8, 12, 16],
+    choices: ['int', 'wis']
+};
+
+const secondaryStatIncreaseChoices: Choice = {
+    name: 'Secondary Stat Increase',
+    text: 'Increase Strength, Dexterity or Charisma at levels 5, 9, 13 and 17',
+    levels: [5, 9, 13, 17],
+    choices: ['str', 'dex', 'cha']
+};
+
+const spellshaperChoices: AbilityChoice = {
+    name: 'Spellshaper',
+    text: `Choose or Change Spellshaper Abilities`,
+    levels: [4, 4, 9, 13],
+    choices: ['Extra-Dimensional Vision', 'Stretch Time', 'Echo Casting', 'Elemental Destruction', 'Dimensional Reach', 'Methodical Spellweaver', 'Elemental Transmutation' ],
+    abilities: spellshaperAbilities
+};
+
+const mageSubclassChoices: SubclassChoice = {
+    name: 'Subclass',
+    text: 'Choose a Mage subclass',
+    levels: [3],
+    choices: ['Mage of Control', 'Mage of Chaos'],
+    abilities: [mageOfControlSubclassAbilities, mageOfChaosSubclassAbilities]
+};
+
+const mageStatChoices = [keyStatIncreaseChoices, secondaryStatIncreaseChoices];
+
+export const mage = {
+    abilities: mageAbilities,
+    abilityChoices: spellshaperChoices,
+    subclassChoices: mageSubclassChoices,
+    statChoices: mageStatChoices,
+}

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import './AbilityDisplay.css'
 import { AbilitiesContext } from "../../../../context/AbilitiesContext";
 import ClassAbilityDisplay from "./ClassAbilityDisplay";
-import { ClassAbility } from "../../../../data/abilities";
+import { ClassAbility, heroicAbilities } from "../../../../data/abilities";
 
 function AbilityDisplay() {
     const abilitiesContext = useContext(AbilitiesContext);
@@ -18,9 +18,10 @@ function AbilityDisplay() {
 
     useEffect(() => {
         if (!abilitiesContext) return;
-        const { classAbilities } = abilitiesContext.state;
+        const { classAbilities, subClassAbilities, racialAbilities } = abilitiesContext.state;
         
-        const categorizedAbilities = classAbilities.reduce((acc, ability) => {
+        const abilities = [...heroicAbilities, ...racialAbilities, ...classAbilities, ...subClassAbilities];
+        const categorizedAbilities = abilities.reduce((acc, ability) => {
             if (ability.action.has) {
                 acc.action.push(ability);
             } else if (ability.reaction.has) {
@@ -33,7 +34,7 @@ function AbilityDisplay() {
             action: [] as ClassAbility[],
             reaction: [] as ClassAbility[],
             passive: [] as ClassAbility[]
-        });
+        });        
 
         setAbilities(categorizedAbilities);
         

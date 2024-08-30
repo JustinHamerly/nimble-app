@@ -5,20 +5,27 @@
 }
 
 .level-action-display{
-    width: 100%;
-    margin: 10px;
+    margin: 5px;
+    padding: 5px;
     display: flex;
     flex-direction: row;
+    align-items: start;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
 }
 
 .name-action-box{
-    width: 10%;
+    width: 20%;
 }
 
 .ability-text-box{
     width: 80%;
     margin: auto;
     text-align: left;
+}
+
+.ability-text {
+    margin: 0;
 }
 
 .ability-title {

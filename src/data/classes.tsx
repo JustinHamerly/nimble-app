@@ -1,8 +1,8 @@
 import { ARMOR, WEAPONTYPE, RESOURCEPOOL } from "./enums";
 import { ClassAbility } from "./abilities";
-import { berserkerAbilities } from "./classAbilities/berserker";
+import { berserker } from "./classAbilities/berserker";
 import { theCheatAbilities } from "./classAbilities/thecheat";
-import { mageAbilities } from "./classAbilities/mage";
+import { mage } from "./classAbilities/mage";
 import { oathswornAbilities } from "./classAbilities/oathsworn";
 
 interface ClassInterface {
@@ -18,8 +18,9 @@ interface ClassInterface {
     keyStats: string[];
     abilities: ClassAbility[];
     additionalResourcePool?: RESOURCEPOOL;
-    spellcaster: boolean;
-    spellSchool: string[];
+    spellcaster?: boolean;
+    spellSchool?: string[];
+    spellLevels?: number[];
 }
 
 type ClassInfoType = Record<string, ClassInterface>;
@@ -36,10 +37,8 @@ export const classInfo: ClassInfoType = {
             startingHP: 20
         },
         keyStats: ['str', 'dex'],
-        abilities: berserkerAbilities,
+        abilities: berserker.abilities,
         additionalResourcePool: RESOURCEPOOL.FURY,
-        spellcaster: false,
-        spellSchool: []
     },
 
     thecheat: {
@@ -54,8 +53,6 @@ export const classInfo: ClassInfoType = {
         },
         keyStats: ['dex', 'cha'],
         abilities: theCheatAbilities,
-        spellcaster: false,
-        spellSchool: [] 
     },
     
     mage: {
@@ -69,9 +66,10 @@ export const classInfo: ClassInfoType = {
             startingHP: 10
         },
         keyStats: ['int', 'wis'],
-        abilities: mageAbilities,
+        abilities: mage.abilities,
         spellcaster: true,
-        spellSchool: ['fire', 'ice', 'lightning']
+        spellSchool: ['fire', 'ice', 'lightning'],
+        spellLevels: [1,2,4,6,8,10,12,14,16,18]
     },
 
     oathsworn: {
@@ -87,7 +85,8 @@ export const classInfo: ClassInfoType = {
         keyStats: ['str', 'cha'],
         abilities: oathswornAbilities,
         spellcaster: true,
-        spellSchool: ['radiant']
+        spellSchool: ['radiant'],
+        spellLevels: []
     }
 
 }
