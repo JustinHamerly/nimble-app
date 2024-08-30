@@ -1,8 +1,8 @@
 import { ClassAbility } from "../data/abilities"
-import { berserkerAbilities } from "../data/classAbilities/berserker";
-import { mageAbilities } from "../data/classAbilities/mage";
-import { oathswornAbilities } from "../data/classAbilities/oathsworn";
-import { theCheatAbilities } from "../data/classAbilities/thecheat";
+import { berserker } from "../data/classAbilities/berserker";
+import { mage } from "../data/classAbilities/mage";
+import { oathsworn } from "../data/classAbilities/oathsworn";
+import { thecheat } from "../data/classAbilities/thecheat";
 
 const getAbilityActions = () => {
     const getClassSpellsByLevel = (charClass: string, level: number) => {
@@ -11,13 +11,13 @@ const getAbilityActions = () => {
         let abilityList: ClassAbility[] = [];
 
         if(charClass === 'mage'){
-            abilityList = mageAbilities;
+            abilityList = mage.abilities;
         }else if(charClass === 'thecheat'){
-            abilityList = theCheatAbilities;
+            abilityList = thecheat.abilities;
         }else if(charClass === 'oathsworn'){
-            abilityList = oathswornAbilities;
+            abilityList = oathsworn.abilities;
         }else if(charClass === 'berserker'){
-            abilityList = berserkerAbilities;
+            abilityList = berserker.abilities;
         }
 
         let listToReturn = abilityList.filter(ability => ability.level <= level);

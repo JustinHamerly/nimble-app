@@ -1,6 +1,6 @@
 import { ClassAbility, createAbility, defaultAction, defaultLimit, Limiter, Choice, AbilityChoice, SubclassChoice } from "../abilities";
 
-export const oathswornAbilities: ClassAbility[] = [
+const oathswornAbilities: ClassAbility[] = [
     createAbility(
         1,
         'Judgment Dice',
@@ -15,7 +15,8 @@ export const oathswornAbilities: ClassAbility[] = [
             createAbility(
                 5,
                 'Judgement Die (2)',
-                `Whenever you are attacked, gain 2 Judgment Dice instead of 1`
+                `Whenever you are attacked, gain 2 Judgment Dice instead of 1`,
+                'oathsworn'
             )
 
         ]

@@ -1,6 +1,6 @@
 import { AbilityChoice, Choice, ClassAbility, createAbility, defaultAction, defaultLimit, Limiter, SubclassChoice } from "../abilities";
 
-export const theCheatAbilities: ClassAbility[] = [
+const theCheatAbilities: ClassAbility[] = [
     createAbility(
         1,
         'Vicious Opportunist',
@@ -292,7 +292,7 @@ const underhandedAbilityChoices: AbilityChoice = {
     levels: [4, 6, 8, 10, 12, 14, 16, 18],
     choices: ['Pocket Sand', `I'm Outta Here!`, 'Feinting Attack', 'Twist the Blade', 'Uncanny Dodge', 'Sunder Armor (Medium)', 'Sunder Armor (Heavy)', 'Steal Tempo', 'Trickshot', 'Exploit Weakness', 'Shadow Strike'],
     abilities: underhandedAbilities
-},
+};
 
 const theCheatSubclassChoices: SubclassChoice = {
     name: 'Subclass',
@@ -300,7 +300,7 @@ const theCheatSubclassChoices: SubclassChoice = {
     levels: [3],
     choices: ['Assassin', 'Scoundrel'],
     abilities: [assassinSubclassAbilities, scoundrelSubclassAbilities]
-},
+};
 
 export const thecheat = {
     abilities: theCheatAbilities,
